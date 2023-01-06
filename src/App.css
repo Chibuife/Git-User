@@ -1,0 +1,210 @@
+:root{
+    --font-family: "Roboto",sans-serif;
+    --bodyBackGroundColor: #f1f5f8;
+    --white: #fff;
+    --bodyContentMargin: 10rem;
+    --clr-primary-5: #2caeba;
+   
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.body{
+    font-family: var(--font-family);
+    background-color: var(--bodyBackGroundColor);
+    /* width: 1400px; */
+}
+.bodyContent{
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: red; */
+    width: calc(100% - var(--bodyContentMargin));
+    /* height: 50px; */
+}
+.header{
+    background-color: var(--white);
+    display: grid;
+     grid-template-columns: 50px 100px 200px 50px;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+}
+.search{
+    margin-top: 4rem;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: calc(100% - 20rem) ;
+    height: 50px;
+}
+.search input{
+    border: none;
+    outline-color: var(--bodyBackGroundColor);
+    width: 90%;
+    height: 35px;
+    margin: 20px;
+}
+
+.searchBtn{
+    background-color: var(--clr-primary-5);
+    color: var(--white);
+    font-weight: 700;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.sectionOne{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.infoBox{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white);
+    width: 15rem;
+    padding-left: 2rem;
+    padding-right: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 5px;
+   margin: 20px 40px 20px 0;
+}
+.pink{
+    background-color: rgb(255, 224, 240);
+}
+.green{
+    background-color: #e0fcff;
+}
+.purple{
+    background-color: rgb(230, 230, 255);
+}
+.yellow{
+    background-color: rgb(255, 251, 234);
+}
+.sectionOne img{
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.size{
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 100px;
+}
+.sectionTwo{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.whitebackground{
+    background-color: var(--white);
+}
+.userImage img{
+    border-radius: 50px;
+    height: 70px;
+}
+
+.topbox{
+    width: 100px;
+    padding: 10px 30px 10px 20px;
+    text-align: center;
+    border-radius: 3px 3px 0px 0px;
+}
+.userDetail{
+    background-color: white;
+    width: 580px;
+    height: 250px;
+    border-radius: 0px 5px 5px 5px 5pxx;
+    margin-bottom: 50px;
+}
+
+.personnalinfo{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.personnalinfo :nth-child(1){
+    margin-right: 10px;
+}
+.personnalinfo :nth-child(3){
+    margin-left: 280px;
+}
+
+.follow a{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    height: 30px;
+    width: 70px;
+    color: var(--clr-primary-5);
+    border: 1px solid var(--clr-primary-5);
+    border-radius: 50px;
+    text-decoration: none;
+}
+.follow a:hover{
+    background-color: var(--clr-primary-5);
+    color: var(--white);
+}
+
+.about{
+    margin-left: 30px;
+}
+.about img{
+    margin-right: 10px;
+}
+.about a{
+    text-decoration: none;
+    color: var(--clr-primary-5);
+}
+.overflowscroll{
+   overflow: scroll;
+}
+.followersdetail{
+    display: flex;
+    margin: 30px;
+}
+.followersdetail :nth-child(1){
+    margin-right: 30px;
+}
+.followersdetail img{
+    border-radius: 50px;
+    height: 50px;
+}
+.followersdetail a{
+    color: black;
+    text-decoration: none;
+}
+
+
+.sectionThree{
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 2fr 3fr;
+    gap: 2rem;
+}
+.sectionThree :nth-child(1){
+    background-color: var(--white);
+    width: 400px;
+
+}
+
+.chartBackground{
+    background-color: var(--white);
+}
+
+.bar{
+    /* position: absolute; */
+    width: 70%;
+    /* height: 100%; */
+}
