@@ -1,24 +1,29 @@
 import { AuthErrorCodes, signInWithEmailAndPassword,  GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import React, { useCallback, useContext, useEffect, useState } from "react"
- import { Link, Navigate } from "react-router-dom";
+ import { Link, Navigate, useOutletContext } from "react-router-dom";
 import { auth } from "../auth";
-
+import passwordicon from "./password.svg"
 import {
     useLocation,
     useNavigate,
     useParams,
   } from "react-router-dom";
 import GoogleButton from "react-google-button";
+import submit from "./submit.svg"
 
 const Login = ()=>{
-
+    const [activeLogin, setActiveLogin] = useState(false)
+    const navgateLink = ()=>{
+        setActiveLogin(current=> !current)
+    }
     const navigate = useNavigate()
-    const[email, setEmail] = useState("")
+    const [input] = useOutletContext();
+    const email = input.props.value;
     const[password, setPassword] = useState("")
     const[user, setUser] = useState();
-   const inputemail = (e)=>{
-    setEmail(e.target.value)    
-   }
+//    const inputemail = (e)=>{
+//     setEmail(e.target.value)    
+//    }
 
 
    const inputpassword= (e=>{
@@ -82,23 +87,28 @@ const Login = ()=>{
         // ...
       });
     }
- 
+    // const mail = useOutletContext();
     return(
-        <>
+        <div className="login">
+        <div className="gray">
+        <img src="https://dev-pu8wyk-g.us.auth0.com/img/badge.png" alt="" />
         <h1>Github Users</h1>
-        <div><Link to={"/a/login"}>Log In</Link> <Link to={"/a/signup"}>Sign Up</Link></div>
+        </div>
+        <div className="link-signUp-login"><Link className={activeLogin ? "link-login not-active " : "link-login  active"} to={"/a/login"}>Log In</Link> <Link className= "link-signup not-active"  to={"/a/signup"}>Sign Up</Link></div>
         <form onSubmit={loginEmailPassword}>
-        <GoogleButton onClick={signinWithEmail}/>
-        <div>or</div>
-        <input type="email" value={""||email} onChange={inputemail}/><br />
-       
-        <input type="password" value={""||password} onChange={inputpassword}/><br />
+        <GoogleButton className="googleButton" onClick={signinWithEmail}/>
+        
+        <div className="or">or</div>
+     
+       <div>{input}</div>
+    
+       <div className="inputbox"><div className="gray input-icon"><img src={passwordicon} alt="" /></div> <input type="password" value={""||password} onChange={inputpassword}/></div><br />
        <br/>
-        <div><Link to={"/a/passwordreset"}>Don't remember you password?</Link></div>
-        <button >Log </button><br />
+        <div className="passwordReset"><Link to={"/a/passwordreset"}>Don't remember you password?</Link></div>
+        <button >Log <img src={submit} alt="" /></button><br />
     
         </form>
-        </>
+        </div>
     )
 }
 

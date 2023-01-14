@@ -208,3 +208,170 @@
     width: 70%;
     /* height: 100%; */
 }
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.authBody{
+background-color: black;
+height: 100vh;
+width: 100vw;
+position: absolute;
+
+}
+.signin-login{
+/* transition: 5s all; */
+background-color: var(--white);
+width: 350px;
+border-radius: 5px;
+overflow: hidden;
+margin-left: auto;
+margin-right: auto;
+margin-top: 100px;
+text-align: center;
+position: relative;
+}
+.gray{
+    background-color: rgb(237, 237, 237);
+    padding-bottom: 10px;
+}
+.login img{
+    height: 70px;
+    margin-top: 20px;
+    
+}
+
+.signin img{
+    margin-top: 20px;
+    height: 70px;
+}
+
+.link-signUp-login{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.link-signup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    
+}
+.not-active{
+    border-bottom: 1px solid rgba(51, 50, 50, 0.159);
+    color: rgba(51, 50, 50, 0.459);
+    
+}
+.active{
+    border-bottom: 1px solid black;
+}
+
+.link-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+.googleButton{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.inputbox{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+/* .inputbox:active{
+    border: 1px solid black ;
+} */
+
+.inputbox img{
+    height: 50%;
+}
+.inputbox input{
+    outline: none;
+    height: 40px;
+    width: 250px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.input-icon{
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.or{
+    padding-bottom: 20px;
+}
+.small{
+    
+   width: 100%;
+   background-color: rgb(237, 237, 237);
+    padding: 15px;
+}
+
+button{
+    cursor: pointer;
+    margin-left: auto;
+    height: 90px;
+    color: var(--white);
+    border: none;
+    margin-right: auto;
+    background-color: rgb(234, 83, 35);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -30px;
+}
+button :nth-child(1){
+    margin-left: 10px;
+}
+button img{
+    padding-bottom: 20px;
+    width: 10px;
+}
+.passwordReset{
+    margin-bottom: 20px;
+}
+
+
+/* forgotten password */
+.back img{
+    height: 13px;
+    width: 13px;
+}
+.back{
+    height: 20px;
+    width: 20px;
+    top: 10px;
+    left: 20px;
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--white);
+    border-radius: 20px;
+}
+
+.passwordResettext{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.sendEmailBtn{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}

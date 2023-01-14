@@ -1,14 +1,13 @@
 import { sendPasswordResetEmail } from "firebase/auth"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useOutletContext } from "react-router-dom"
 import { auth } from "../auth"
-
+import back from "./back.svg"
 export const PasswordReset = ()=>{
     const navigate = useNavigate()
-    const[email, setEmail] = useState("")
-    const inputemail = (e)=>{
-        setEmail(e.target.value)    
-       }
+    const [input] = useOutletContext();
+    const email = input.props.value;
+  
     const sendpasswordreset = (e)=>{
         e.preventDefault()
         console.log(email)
@@ -24,12 +23,17 @@ export const PasswordReset = ()=>{
     }
     return(
         <div>
-            <div onClick={()=> navigate(-1)}>{"<-"}</div>
-            <h4>Reset Your Password</h4>
-            <p>please enter your email address. We will send you an email to reset your password</p>
+            
+            <div className="gray">
+            <div className="back" onClick={()=> navigate(-1)}> <img src={back} alt="" /></div>
+             <img src="https://dev-pu8wyk-g.us.auth0.com/img/badge.png" alt="" />
+             <h1>Reset Your Password</h1>
+            </div>
+            <p className="passwordResettext">please enter your email address. We will send you an email to reset your password</p>
             <form onSubmit={sendpasswordreset}>
-            <input type="email" value={email || ""} onChange={inputemail}/><br />
-            <button type="submit">Send Email</button>
+          
+            <div>{input}</div>
+            <button className= "sendEmailBtn" type="submit">Send Email</button>
             </form>
         </div>
     )

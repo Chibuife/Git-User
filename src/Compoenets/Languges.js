@@ -43,13 +43,12 @@ useEffect  ( ()=> {
          const data = [ ]
          userLang.forEach((repo, index) => {
             if (repo.language){
-                if(!language_obj[index]){
-                }else{
-                    console.log('ok')
-                }
+                // if(!language_obj[index]){
+                // }else{
+                //     console.log('ok')
+                // }
                 if (!language_obj[repo.language]){
                     language_obj[repo.language] = 1  
-                    // console.log(repo.language) 
                    angue.push(repo.language)
                 }else{
                     language_obj[repo.language] += 1
@@ -64,7 +63,6 @@ useEffect  ( ()=> {
       
        
          value_obj.forEach((val,index)=>{
-            
             data.push({name: angue[index], value: val})
          }
          )

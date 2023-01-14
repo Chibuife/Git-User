@@ -1,26 +1,32 @@
 import React, { useCallback, useState, useEffect} from "react"
-import { Link, Navigate, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet, useOutletContext } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile, sendSignInLinkToEmail,isSignInWithEmailLink, signInWithEmailLink, signInWithPopup, GoogleAuthProvider, sendEmailVerification } from "firebase/auth";
 import { auth } from "../auth";
-
+import passwordicon from "./password.svg"
 import {
     useLocation,
     useNavigate,
     useParams,
   } from "react-router-dom";
 import GoogleButton from "react-google-button";
+import submit from "./submit.svg"
 const Signup = ({ history })=>{
+    const [activeLogin, setActiveLogin] = useState(false)
+    const navgateLink = ()=>{
+        setActiveLogin(current=> !current)
+    }
     const[name, setname] = useState("")
-    const[email, setEmail] = useState("")
+    const [input] = useOutletContext();
+    const email = input.props.value;
     const[password, setPassword] = useState("")
     let navigate = useNavigate();
     const inputname = (e)=>{
         setname(e.target.value)    
        }
 
-   const inputemail = (e)=>{
-    setEmail(e.target.value)    
-   }
+//    const inputemail = (e)=>{
+//     setEmail(e.target.value)    
+//    }
 
 
    const inputpassword= (e=>{
@@ -31,20 +37,25 @@ const createAccount = async (e)=>{
     e.preventDefault()
 const loginEmail = email;
 const loginPassword = password;
-const loginName = name;
+// const loginName = name;
 
 console.log(loginEmail)
 console.log(loginPassword)
     try{
        
     
-        const userCredential = await createUserWithEmailAndPassword (auth, loginEmail, loginPassword, loginName);
-        const username = await  updateProfile(auth.currentUser,  {displayName: loginName});
+        const userCredential = await createUserWithEmailAndPassword (auth, loginEmail, loginPassword, );
+        // const username = await  updateProfile(auth.currentUser,  {displayName: loginName});
         console.log(userCredential.user.emailVerified)
         if(userCredential.user.emailVerified === true){
             navigate("/home")
         }else{
-            navigate("/verification")
+            // navigate("/verification")
+            sendEmailVerification(auth.currentUser)
+            .then(() => {
+            alert('verification sent')
+            navigate("/home")
+            })
         }
         sendEmailVerification(auth.currentUser)
         .then(() => {
@@ -81,23 +92,28 @@ const handleGoogleSignIn = async () =>{
             console.log(error)
         }
     }
+
     return(
-        <div>
+        <div className="signin">
+        <div className="gray">
+        <img src="https://dev-pu8wyk-g.us.auth0.com/img/badge.png" alt="" />
         <h1>Signup</h1>
-        <div><Link to={"/a/login"}>Log In</Link> <Link to={"/a/signup"}>Sign Up</Link></div>
+        </div>
+        <div className="link-signUp-login"><Link className="link-login not-active" to={"/a/login"}>Log In</Link> <Link className={activeLogin ? "link-signup  not-active" : "link-signup active"} to={"/a/signup"}>Sign Up</Link></div>
         <form onSubmit={createAccount}>
-        <GoogleButton onClick={handleGoogleSignIn}/>
-        <div>or</div>
+        <GoogleButton   className="googleButton"  onClick={handleGoogleSignIn}/>
+        <div className="or">or</div>
+        <div>{input}</div>
+        <div className="inputbox"><div className="gray input-icon"><img src={passwordicon} alt="" /></div><input type="password"  value={password || ""}  onChange={inputpassword}/><br /></div><br />
+
         
-        <input type="email" value={email || ""} onChange={inputemail}/><br />
-        
-        <input type="password"  value={password || ""}  onChange={inputpassword}/><br />
        
-        <p>
-            By signing up, you agree to our terms of service and privacy policy.
-        </p>
-        <button type="submit">Sign Up {">"}</button><br />
-      
+        <div className="small">
+            <small>
+             By signing up, you agree to our terms of service and privacy policy.
+            </small>
+        </div>
+        <button >Sign Up<img src={submit} alt="" /></button><br />      
         </form>
         </div>
     )
