@@ -6,7 +6,7 @@ import { MostPopular } from './Compoenets/MostPopular';
 import { Stars } from './Compoenets/Stars';
 import { Fork } from './Compoenets/Fork';
 import { Search } from './Compoenets/Search';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { Header } from './Compoenets/Header';
 import {
   createBrowserRouter,
@@ -22,42 +22,30 @@ import { auth } from './auth';
 import { Octokit } from "@octokit/rest" 
 
 let token = "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";
-
-// import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
+let number= 60;
 function App() {
   let [usersName, setUserName] = useState();
   const [userObj, setUserObj] = useState();
-
-  // console.log(usersName)
   const octokit = new Octokit({     
-    // auth: "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",    
-    // userAgent: 'skylight v1' 
   });
 
  console.log(auth)
 
 const fetchData =  useCallback( async (userName)=> {   
   try {
-   const { data } =  await octokit.request(`GET /users/{userName}`, {
-      userName
-    })
+   const { data } =  await octokit.request(`GET /users/{userName}`, {userName})
     console.log(data);
-    setUserObj(data)
+    if(data){
+      setUserObj(data);
+      number--;
+    }
+
+    console.log(number)
   } catch (e) {
     throw new Error(e.message);
   }
-  //   response.json()
-  //  .then(res => res.json())
-  //  .then(data=>{
-  //      setUserObj(data)
-  //  }
-  //  )
-  //  .catch((error)=>{
-  //   console.log(error)
-  //  })
+
 },[])  
-// let intFetch;
-// console.log(usersName)
 
  const intFetch =  useEffect  ( ()=> {
   if (usersName === undefined){
@@ -85,6 +73,10 @@ const fetchData =  useCallback( async (userName)=> {
   e.preventDefault()
   console.log(e.target.value)
 } 
+
+
+
+
 
  const router = createBrowserRouter([
   {
@@ -122,12 +114,20 @@ const fetchData =  useCallback( async (userName)=> {
     <div className='bodyContent'>
     <Search usersName={usersName} setUserName={setUserName} intFetch={intFetch} />
     <GitHub userObj={userObj}/>
-
-    <section className='sectionThree'>
-      <div className='pie'><Languages  userObj={userObj}/></div>
-      <div className='bar'><MostPopular userObj={userObj}/></div>
-      <div className='pie'><Stars  userObj={userObj}/></div>
-      <div className='bar'><Fork userObj={userObj}/></div>
+    
+    <section className='sectionThree m'>
+      {/* <div className='pie'> */}
+        <Languages  userObj={userObj}/>
+        {/* </div> */}
+      {/* <div className='bar'> */}
+        <MostPopular userObj={userObj}/>
+        {/* </div> */}
+      {/* <div className='pie'> */}
+        <Stars  userObj={userObj}/>
+        {/* </div> */}
+      {/* <div className='bar'> */}
+        <Fork userObj={userObj}/>
+        {/* </div> */}
     </section>
     </div>
     

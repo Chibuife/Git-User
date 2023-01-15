@@ -43,7 +43,7 @@ const data = obj.filter((ob, index) => {
     return index === obj.findIndex(o => ob.value === o.value);
   });
 data.splice(5)
-console.log(data)
+
 
     // fusion Chart
     // Create a JSON object to store the chart configurations

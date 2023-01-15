@@ -15,29 +15,31 @@ export  const  GitHub = ({userObj})=>{
         return(
             <>
             <section className="sectionOne">
-            <div className="infoBox"><div className="size pink"><img src={repo} alt="" /> </div> <div><h3>{userObj.public_repos}</h3> Repos</div> </div>
+            <div className="infoBox"><div className="size pink"><img src={repo} alt="" /> </div> <div><h3>{userObj.public_repos}</h3> <span >Repos</span> </div> </div>
            
-            <div className="infoBox"><div className="size green"><img src={followers}alt="" /></div> <div><h3>{userObj.followers}</h3> Followers</div></div>
+            <div className="infoBox"><div className="size green"><img src={followers}alt="" /></div> <div><h3>{userObj.followers}</h3> <span>Followers</span></div></div>
           
-            <div className="infoBox"><div className="size purple"><img src={following}alt="" /></div> <div><h3>{userObj.following}</h3> Following</div></div>
+            <div className="infoBox"><div className="size purple"><img src={following}alt="" /></div> <div><h3>{userObj.following}</h3> <span>Following</span></div></div>
        
-            <div className="infoBox"><div className="size yellow"><img src={Gist} alt="" /> </div> <div><h3>{userObj.public_gists}</h3> Gists</div></div>
+            <div className="infoBox"><div className="size yellow"><img src={Gist} alt="" /> </div> <div><h3>{userObj.public_gists}</h3> <span>Gists</span></div></div>
             </section>
 
         <section className="sectionTwo">
           
             <div>
             <div className="whitebackground topbox">{userObj.type} </div>
-                <div className="userDetail">
+                <div className="userDetail largerWidth">
                   
                  
                     <div className="personnalinfo">
                    
-                    <div className="userImage"> <img src={userObj.avatar_url} alt="" /></div>
-                    <div>
+                    <div className="userImage"> <img src={userObj.avatar_url} alt="" />
+                    <div className="name-twitter">
                     <div>{userObj.name}</div>
-                    <div> @ {userObj.twitter_username}</div>
+                    <div className="twitter">@{userObj.twitter_username}</div>
                     </div>
+                    </div>
+                    
                     <div className="follow">
                         <a href={userObj.html_url} target="_blank">Follow</a>
                     </div>
@@ -70,7 +72,6 @@ const UserFollowersComp= ({userObj})=>{
        .then(res => res.json())
        .then(data=>{
         setUserFollowers(data)
-        console.log(data)
        }
        )
        .catch((error)=>{

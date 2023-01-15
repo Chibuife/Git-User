@@ -69,7 +69,6 @@ useEffect  ( ()=> {
             data.push({name: angue[index], value: val})
          }
          )
-         console.log(data)
          const chartConfigs = {
           type: "Pie2D", // The chart type
           width: "100%", // Width of the chart

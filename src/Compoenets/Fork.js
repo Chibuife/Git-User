@@ -37,7 +37,6 @@ if(repoName){
         return index === obje.findIndex(o => ob.value === o.value);
       });
       data.slice(5)
-      console.log(data)
     // fusion Chart
     // Create a JSON object to store the chart configurations
 const chartConfigs = {
