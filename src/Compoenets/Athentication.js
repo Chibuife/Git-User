@@ -3,9 +3,10 @@ import { Outlet } from "react-router-dom"
 import email from "./envelopIcon.svg"
 
 export const Authentication = ()=>{
+     
      const[mail, setEmail] = useState("")
      const inputemail = (e)=>{
-          setEmail(e.target.value)    
+          setEmail(e.target.value)   
          }
    const input =  <div className="inputbox"><div className="gray input-icon"><img src={email} alt="" /></div> <input type="email" value={mail || ""} onChange={inputemail}/></div>
 return(    

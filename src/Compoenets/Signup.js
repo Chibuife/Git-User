@@ -80,14 +80,12 @@ console.log(loginPassword)
         }
     }
    }
-   const googleSignIn= ()=>{
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-}
+
 const handleGoogleSignIn = async () =>{
         try{
-             googleSignIn();
-             navigate("/home")
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider)
+            .then(()=>{ navigate("/home")})
         }catch(error){
             console.log(error)
         }
@@ -96,7 +94,7 @@ const handleGoogleSignIn = async () =>{
     return(
         <div className="signin">
         <div className="gray">
-        <img src="https://dev-pu8wyk-g.us.auth0.com/img/badge.png" alt="" />
+        <img className="authImg" src="https://dev-pu8wyk-g.us.auth0.com/img/badge.png" alt="" />
         <h1>Signup</h1>
         </div>
         <div className="link-signUp-login"><Link className="link-login not-active" to={"/a/login"}>Log In</Link> <Link className={activeLogin ? "link-signup  not-active" : "link-signup active"} to={"/a/signup"}>Sign Up</Link></div>

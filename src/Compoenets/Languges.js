@@ -4,8 +4,11 @@ import { useCallback, useEffect, useState } from 'react'
 import GithubLanguages from 'react-github-languages'
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-
-
+import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import FusionCharts from "fusioncharts";
+import Pie2D from "fusioncharts/fusioncharts.charts";
+import ReactFC from 'react-fusioncharts';
+ReactFC.fcRoot(FusionCharts, Pie2D, FusionTheme); 
 export const Languages = ({userObj}) => {
     const [userLang, setUserLanguge] = useState()
     const [index, setindex] = useState()
@@ -67,31 +70,30 @@ useEffect  ( ()=> {
          }
          )
          console.log(data)
-         const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-         let renderLabel = function(data) {
-            return data.name;
-        }
-        return (
-            
-            <PieChart width={350} height={350}>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-                label={renderLabel}
-                stroke="none"
-              >
-                {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip/>
-            </PieChart>
-        
-          );
+         const chartConfigs = {
+          type: "Pie2D", // The chart type
+          width: "100%", // Width of the chart
+          height: "400", // Height of the chart
+          dataFormat: "json", // Data type
+          dataSource: {
+            // Chart Configuration
+            "chart": {
+              "caption": "Languages",
+              "showPercentValues": "1",
+              "decimals": "1",
+              "useDataPlotColorForLabels": "1",
+              "theme": "fusion",
+              paletteColors:
+              "#2caeba, #5D62B5, #FFC533, #F2726F, #8d6e63, #1de9b6, #6E80CA",
+          },
+            // Chart Data - from step 2
+            data: data
+          }
+        };
+      return(
+      <ReactFC {...chartConfigs} />
+      ) 
+     
                 }
     
 }

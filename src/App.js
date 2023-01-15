@@ -18,33 +18,73 @@ import Login from './Compoenets/Login';
 import { Authentication } from './Compoenets/Athentication';
 import { PasswordReset } from './Compoenets/PasswordReset';
 import { Verification } from './Compoenets/Verfication';
+import { auth } from './auth';
+import { Octokit } from "@octokit/rest" 
+
+let token = "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";
+
 // import FusionTheme from 'fusioncharts/themes/es/fusioncharts.theme.fusion';
 function App() {
-  const [usersName, setUserName] = useState("mark");
+  let [usersName, setUserName] = useState();
   const [userObj, setUserObj] = useState();
 
-//  console.log(usersName)
-  const input = (e)=> setUserName(e.target.value) 
-  
-const fetchData =  useCallback( async (usersName)=> {   
-    const response = await fetch (`https://api.github.com/users/${usersName}`)
-   .then(res => res.json())
-   .then(data=>{
-       setUserObj(data)
-   }
-   )
-   .catch((error)=>{
-    console.log(error)
-   })
-},[])    
-useEffect  ( ()=> {
-       fetchData(usersName)
-},[usersName])
+  // console.log(usersName)
+  const octokit = new Octokit({     
+    // auth: "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",    
+    // userAgent: 'skylight v1' 
+  });
+
+ console.log(auth)
+
+const fetchData =  useCallback( async (userName)=> {   
+  try {
+   const { data } =  await octokit.request(`GET /users/{userName}`, {
+      userName
+    })
+    console.log(data);
+    setUserObj(data)
+  } catch (e) {
+    throw new Error(e.message);
+  }
+  //   response.json()
+  //  .then(res => res.json())
+  //  .then(data=>{
+  //      setUserObj(data)
+  //  }
+  //  )
+  //  .catch((error)=>{
+  //   console.log(error)
+  //  })
+},[])  
+// let intFetch;
+// console.log(usersName)
+
+ const intFetch =  useEffect  ( ()=> {
+  if (usersName === undefined){
+      fetchData("chibuife")
+    }
+  else{
+      if(usersName){
+        fetchData(usersName) 
+      }else{
+        fetchData("chibuife")
+      }
+  }
+
+  },[usersName])
+
+
 
  if(userObj){
   const name = userObj.name
-  // console.log(userObj)
  }
+//  else{
+//   return null
+//  }
+ const input = (e)=>{
+  e.preventDefault()
+  console.log(e.target.value)
+} 
 
  const router = createBrowserRouter([
   {
@@ -69,7 +109,6 @@ useEffect  ( ()=> {
         element: <PasswordReset/>,
       },
     ],
-
   },
   {
     path: "/verification",
@@ -81,16 +120,17 @@ useEffect  ( ()=> {
      <div className='body'>
     <Header/>
     <div className='bodyContent'>
-    <Search usersName={usersName} input={input}/>
+    <Search usersName={usersName} setUserName={setUserName} intFetch={intFetch} />
     <GitHub userObj={userObj}/>
 
     <section className='sectionThree'>
-      <div><Languages  userObj={userObj}/></div>
-      <MostPopular userObj={userObj}/>
-      <div><Stars  userObj={userObj}/></div>
-      <Fork userObj={userObj}/>
+      <div className='pie'><Languages  userObj={userObj}/></div>
+      <div className='bar'><MostPopular userObj={userObj}/></div>
+      <div className='pie'><Stars  userObj={userObj}/></div>
+      <div className='bar'><Fork userObj={userObj}/></div>
     </section>
     </div>
+    
     </div>,
   },
 

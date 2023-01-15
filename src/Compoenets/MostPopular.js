@@ -1,7 +1,9 @@
-
-import { useCallback, useEffect, useState } from "react"
-import { Bar, BarChart, CartesianGrid,ComposedChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-
+import { useCallback, useEffect, useState } from "react";
+import ReactFC from "react-fusioncharts";
+import FusionCharts from "fusioncharts";
+import Column2D from "fusioncharts/fusioncharts.charts";
+import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme); 
 export const MostPopular = ({userObj})=>{
     const [repoName, setRepoName] = useState();
    
@@ -29,7 +31,7 @@ export const MostPopular = ({userObj})=>{
 const obj = []
 if(repoName){
     repoName.forEach((repo)=>{
-            obj.push({name: repo.name, value: repo.stargazers_count})
+            obj.push({label: repo.name, value: repo.stargazers_count})
 
     })
 
@@ -42,44 +44,29 @@ const data = obj.filter((ob, index) => {
   });
 data.splice(5)
 console.log(data)
-const barColors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-return (
-    <div className="bar">
-    <ResponsiveContainer
-     width="100%" 
-     height='100%'
-     >
-        
-        <BarChart
-            data={data.slice()}
-            // margin={{ top: 20, right: 20, left: 20, bottom: 5, }}
-          
-        >
-            <CartesianGrid horizontal={true} vertical={false} />
-        <XAxis
-            dataKey="name"
-            axisLine={false}
-           
-        />
-        <YAxis
-         axisLine={false}
-            
-        />
-        <Tooltip
-        />
-        <Bar
-            dataKey="value"
-        >
-            {
-                data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={barColors[index % 20]} />
-                ))
-            }
-        </Bar>
-        </BarChart>
-    </ResponsiveContainer>
-    </div>
-);
+    // fusion Chart
+    // Create a JSON object to store the chart configurations
+    const chartConfigs = {
+        type: "column2d", // The chart type
+        width: "100%", // Width of the chart
+        height: "400", // Height of the chart
+        dataFormat: "json", // Data type
+        dataSource: {
+          // Chart Configuration
+          chart: {
+            caption: "Most Popular",    //Set the chart caption
+            xAxisName: "Repos",           //Set the x-axis name
+            yAxisName: "Stars",  //Set the y-axis name
+            theme: "fusion",                 //Set the theme for your chart
+            paletteColors: "#2caeba, #5D62B5, #FFC533, #F2726F, #8d6e63, #1de9b6, #6E80CA", 
+          },
+          // Chart Data - from step 2
+          data: data
+        }
+      };
+    // Create a JSON object to store the chart configurations
+
+return <ReactFC {...chartConfigs} />;
 }
 }

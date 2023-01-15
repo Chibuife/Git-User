@@ -4,6 +4,8 @@
     --white: #fff;
     --bodyContentMargin: 10rem;
     --clr-primary-5: #2caeba;
+    --ff-primary: "Roboto",sans-serif;
+    --clr-grey-5: #617d98;
    
 }
 *{
@@ -27,10 +29,29 @@
 .header{
     background-color: var(--white);
     display: grid;
-     grid-template-columns: 50px 100px 200px 50px;
+     grid-template-columns: 70px 80px 200px 50px;
+    align-items: center;
     justify-content: center;
     margin-top: 2rem;
     padding-bottom: 2rem;
+    font-family: var(--ff-primary);
+}
+
+.header img{
+    height: 40px;
+    border-radius: 100px;
+} 
+
+.header div{
+    color: var(--clr-grey-5);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 550;
+}
+
+.header span{
+    font-weight: 550;
+    text-transform: capitalize;
 }
 .search{
     margin-top: 4rem;
@@ -39,7 +60,7 @@
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    width: calc(100% - 20rem) ;
+    /* width: calc(100% - 20rem) ; */
     height: 50px;
 }
 .search input{
@@ -48,6 +69,8 @@
     width: 90%;
     height: 35px;
     margin: 20px;
+    padding-left: 10px;
+    font-size: clamp(0.5rem, 10vw, 1.5rem);
 }
 
 .searchBtn{
@@ -56,6 +79,7 @@
     font-weight: 700;
     padding: 0.5rem;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .sectionOne{
@@ -192,20 +216,22 @@
     justify-items: center;
     grid-template-columns: 2fr 3fr;
     gap: 2rem;
-}
-.sectionThree :nth-child(1){
-    background-color: var(--white);
-    width: 400px;
-
+    width: 100%;
 }
 
+.pie{
+    width: 100%;
+}
+.bar{
+    width: 100%;
+}
 .chartBackground{
     background-color: var(--white);
 }
 
 .bar{
     /* position: absolute; */
-    width: 70%;
+    /* width: 70%; */
     /* height: 100%; */
 }
 a{
@@ -223,7 +249,7 @@ position: absolute;
 .signin-login{
 /* transition: 5s all; */
 background-color: var(--white);
-width: 350px;
+width: 330px;
 border-radius: 5px;
 overflow: hidden;
 margin-left: auto;
@@ -236,22 +262,15 @@ position: relative;
     background-color: rgb(237, 237, 237);
     padding-bottom: 10px;
 }
-.login img{
-    height: 70px;
-    margin-top: 20px;
-    
-}
-
-.signin img{
-    margin-top: 20px;
-    height: 70px;
-}
 
 .link-signUp-login{
     height: 50px;
     display: flex;
     justify-content: space-between;
-    
+}
+.navigate-to{
+    transform: translateX(-100%);
+    transition: all 0.5s;
 }
 
 .link-signup{
@@ -283,20 +302,17 @@ position: relative;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
-    margin-bottom: 40px;
 }
 .inputbox{
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 2px;
     overflow: hidden;
 }
-/* .inputbox:active{
-    border: 1px solid black ;
-} */
+
 
 .inputbox img{
     height: 50%;
@@ -315,7 +331,7 @@ position: relative;
     align-items: center;
 }
 .or{
-    padding-bottom: 20px;
+    padding: 20px;
 }
 .small{
     
@@ -336,13 +352,13 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: -30px;
+    margin-bottom: -22px;
 }
 button :nth-child(1){
     margin-left: 10px;
 }
 button img{
-    padding-bottom: 20px;
+    
     width: 10px;
 }
 .passwordReset{
@@ -351,7 +367,7 @@ button img{
 
 
 /* forgotten password */
-.back img{
+.backimg{
     height: 13px;
     width: 13px;
 }
@@ -375,3 +391,14 @@ button img{
     margin: 0;
     padding: 0;
 }
+
+.authImg{
+    margin-top: 20px;
+    height: 70px;
+}
+
+.forgottenPasswordBox{
+   transition: all 0.5s;
+   transform: translateX(100%);
+}
+

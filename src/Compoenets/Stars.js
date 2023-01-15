@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useState } from "react"
-import { Cell, Pie, PieChart, Tooltip } from "recharts";
-
+import ReactFC from "react-fusioncharts";
+import FusionCharts from "fusioncharts";
+import doughnut2d from "fusioncharts/fusioncharts.charts";
+import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+ReactFC.fcRoot(FusionCharts, doughnut2d, FusionTheme);
 export const Stars = ({userObj})=>{
     const [repoObject, setRepoObject] = useState();
 
@@ -58,32 +61,27 @@ let myTest = removeDuplicates(test);
         data.push({name: myTest[index], value: val})
      }
      )
-     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-    let renderLabel = function(data) {
-        return data.name;
-    }
-     return(
-        <>
-         <PieChart width={350} height={350}>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                outerRadius={80}
-                // fill="#8884d8"
-                dataKey="value"
-                label={renderLabel}
-                innerRadius={60}
-                stroke="none"
-              >
-                {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip/>
-            </PieChart>
-        </>
-     )
+  
+     const chartConfigs = {
+      type: "doughnut2d", // The chart type
+      width: "100%", // Width of the chart
+      height: "400", // Height of the chart
+      dataFormat: "json", // Data type
+      dataSource: {
+        // Chart Configuration
+        chart: {
+          caption: "Stars Per Language",    //Set the chart caption
+          theme: "fusion",                 //Set the theme for your chart
+          paletteColors:
+          "#2caeba, #5D62B5, #FFC533, #F2726F, #8d6e63, #1de9b6, #6E80CA",
+        },
+        // Chart Data - from step 2
+        data: data
+      }
+    };
+    return(
+      <ReactFC {...chartConfigs} />
+      ) 
 }
 console.log(data)
 

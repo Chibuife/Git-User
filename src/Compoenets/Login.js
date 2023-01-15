@@ -21,9 +21,11 @@ const Login = ()=>{
     const email = input.props.value;
     const[password, setPassword] = useState("")
     const[user, setUser] = useState();
-//    const inputemail = (e)=>{
-//     setEmail(e.target.value)    
-//    }
+    
+    const [active, setActive] = useState(false)
+    const navgating= ()=>{
+        setActive(current=> !current)
+    }
 
 
    const inputpassword= (e=>{
@@ -63,6 +65,8 @@ const Login = ()=>{
         }
   } 
  
+
+  
     // adding email
     const signinWithEmail = ()=>{
         const provider = new GoogleAuthProvider();
@@ -87,27 +91,42 @@ const Login = ()=>{
         // ...
       });
     }
-    // const mail = useOutletContext();
+
+
+   // function for the navitating to password
+   const forgottenpassword = (e, path)=> {
+    e.preventDefault();
+    setTimeout(()=>{
+        navgating()
+    },500)
+    setTimeout(()=> navigate(path), 1500);
+  }
     return(
         <div className="login">
         <div className="gray">
-        <img src="https://dev-pu8wyk-g.us.auth0.com/img/badge.png" alt="" />
+        <img className="authImg" src="https://dev-pu8wyk-g.us.auth0.com/img/badge.png" alt="" />
         <h1>Github Users</h1>
         </div>
+        
+        {/* my login block  */}
+        <div className={active? "navigate-to": ""}>
         <div className="link-signUp-login"><Link className={activeLogin ? "link-login not-active " : "link-login  active"} to={"/a/login"}>Log In</Link> <Link className= "link-signup not-active"  to={"/a/signup"}>Sign Up</Link></div>
         <form onSubmit={loginEmailPassword}>
         <GoogleButton className="googleButton" onClick={signinWithEmail}/>
         
         <div className="or">or</div>
      
-       <div>{input}</div>
-    
-       <div className="inputbox"><div className="gray input-icon"><img src={passwordicon} alt="" /></div> <input type="password" value={""||password} onChange={inputpassword}/></div><br />
-       <br/>
-        <div className="passwordReset"><Link to={"/a/passwordreset"}>Don't remember you password?</Link></div>
+        <div>{input}</div>
+        <div className="inputbox"><div className="gray input-icon"><img src={passwordicon} alt="" /></div> <input type="password" value={""||password} onChange={inputpassword}/></div><br />
+        <br/>
+        <div className="passwordReset"><Link  onClick={(e)=>forgottenpassword(e,"/a/passwordreset" )}>Don't remember you password?</Link></div>
+        </form>
+        </div>
+       
+       {/* my button */}
         <button >Log <img src={submit} alt="" /></button><br />
     
-        </form>
+        
         </div>
     )
 }
