@@ -21,7 +21,7 @@ import { Verification } from './Compoenets/Verfication';
 import { auth } from './auth';
 import { Octokit } from "@octokit/rest" 
 
-let token = "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";
+// let token = "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";
 let number= 60;
 function App() {
   let [usersName, setUserName] = useState();
@@ -34,11 +34,15 @@ function App() {
 const fetchData =  useCallback( async (userName)=> {   
   try {
    const { data } =  await octokit.request(`GET /users/{userName}`, {userName})
-    console.log(data);
-    if(data){
-      setUserObj(data);
-      number--;
-    }
+    setTimeout(
+      ()=>{
+        if(data){
+          setUserObj(data);
+          console.log(data)
+          number--;
+        }
+      }, 3000)
+ 
 
     console.log(number)
   } catch (e) {
@@ -112,22 +116,25 @@ const fetchData =  useCallback( async (userName)=> {
      <div className='body'>
     <Header/>
     <div className='bodyContent'>
+    <div className='search-count'>
     <Search usersName={usersName} setUserName={setUserName} intFetch={intFetch} />
+    <div className='count'>{number}/60</div>
+    </div>
     <GitHub userObj={userObj}/>
     
-    <section className='sectionThree m'>
-      {/* <div className='pie'> */}
+    <section className='sectionThree'>
+      <div className='pie'>
         <Languages  userObj={userObj}/>
-        {/* </div> */}
-      {/* <div className='bar'> */}
+        </div>
+      <div className='bar'>
         <MostPopular userObj={userObj}/>
-        {/* </div> */}
-      {/* <div className='pie'> */}
+        </div>
+      <div className='pie'>
         <Stars  userObj={userObj}/>
-        {/* </div> */}
-      {/* <div className='bar'> */}
+        </div>
+      <div className='bar'>
         <Fork userObj={userObj}/>
-        {/* </div> */}
+        </div>
     </section>
     </div>
     

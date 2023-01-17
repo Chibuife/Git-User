@@ -17,8 +17,7 @@
 .body{
     font-family: var(--font-family);
     background-color: var(--bodyBackGroundColor);
-    min-width: 1500px; 
-    /* width: ; */
+    max-width: 1500px; 
 }
 .bodyContent{
     margin-left: auto;
@@ -46,22 +45,25 @@
 .header div{
     color: var(--clr-grey-5);
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: clamp(0.5rem, 3vw , 1.5rem);
 }
+
 
 .header span{
     font-weight: 550;
     text-transform: capitalize;
+    font-size: clamp(0.5rem, 3vw , 1rem);
+
 }
 .search{
-    margin-top: 4rem;
     background-color: var(--white);
     display: flex;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    /* width: calc(100% - 20rem) ; */
+    width: 90%;
     height: 50px;
+    margin-right: 50px;
 }
 .search input{
     border: none;
@@ -71,7 +73,6 @@
     margin: 20px;
     padding-left: 10px;
     font-size: clamp(0.5rem, 3vw, 1.5rem);
-
 }
 
 .searchBtn{
@@ -82,24 +83,35 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
-.sectionOne{
+.search-count{
     display: flex;
     flex-wrap: wrap;
+    margin-top: 4rem;
+}
+.count{
+    font-size: clamp(2rem , 1vw, 5rem);
+    color: var(--clr-grey-5);
+    padding-top: 7px;
+}
+
+.sectionOne{
+    display: grid;
     justify-content: space-between;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
 }
 
 .infoBox{
+    width: 100%;
     display: flex;
-    /* justify-content: space-between; */
     background-color: var(--white);
     padding-left: 2rem;
-    padding-right: 4rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     border-radius: 5px;
     margin: 20px 40px 20px 0;
-    justify-content: space-around;
+    justify-content: start;
 }
 .infoBox :nth-child(2){
     padding-left: 30px;
@@ -235,24 +247,18 @@ h3{
 }
 .sectionThree{
     display: grid;
-    justify-items: center;
-    background-color: red;
     gap: 2rem;
-    /* width: 100%; */
     padding-bottom: 30px;
-    object-fit: contain;
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    place-items: center;
+    
 }
-.sectionThree div{
-    width: 100% ;
-
+.sectionThree > div{
+    width: 100%;
     height: 400px;
-    background-color: blue;
-    /* object-fit: fill; */
 }
-.bar{
-    width: 100% !important;
-    background-color: blue;
-}
+
 .chartBackground{
     background-color: var(--white);
 }
@@ -423,15 +429,27 @@ button img{
    transform: translateX(100%);
 }
 
-@media (min-width: 800px) {
-    .sectionThree{
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-@media (min-width: 900px) {
+@media (max-width: 578px) {
+    .body{
+        width: 100vw;
+    }
+    .header img{
+        margin-left: 20px;
+    }
+    .bodyContent{
+        min-width: 100%;
+    }
+    .userDetail{
+        width: 100%;
+    }
+    .f{
+        width: 90%;
+    }
     .sectionThree{
-        grid-template-columns: 2fr 3fr;
-        /* justify-content: center; */
+        justify-content: center;
+    }
+    .sectionThree > div{
+        width: 70%;
     }
 }

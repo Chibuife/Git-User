@@ -51,7 +51,7 @@ export  const  GitHub = ({userObj})=>{
                     </div>
                     </div>
                  </div>
-            <div >
+            <div className="f">
                 <div className="whitebackground topbox">followers</div>
                 <div className="userDetail overflowscroll">
                 <UserFollowersComp userObj={userObj}/>
