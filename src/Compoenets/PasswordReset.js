@@ -1,7 +1,7 @@
 import { async } from "@firebase/util"
 import { sendPasswordResetEmail } from "firebase/auth"
 import { useState } from "react"
-import { resolvePath, useNavigate, useOutletContext } from "react-router-dom"
+import { useNavigate, useOutletContext } from "react-router-dom"
 import { auth } from "../auth"
 import back from "./back.svg"
 export const PasswordReset = ()=>{
@@ -22,7 +22,6 @@ export const PasswordReset = ()=>{
         .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
         });
     }
     return(

@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@fortawesome/free-regular-svg-icons": "^6.2.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@octokit/rest": "^19.0.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -19,6 +16,7 @@
     "react-fusioncharts": "^4.0.0",
     "react-github-languages": "^1.0.0",
     "react-google-button": "^0.7.2",
+    "react-password-checklist": "^1.4.3",
     "react-prism": "^4.3.2",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",

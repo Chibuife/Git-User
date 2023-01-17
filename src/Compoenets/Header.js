@@ -11,7 +11,7 @@ export const Header = ()=>{
     const monitorAuthState = async ()=>{
         onAuthStateChanged(auth, user=>{
           if (user){
-            
+            console.log(user)
              const userName = user.displayName;
              const userPhoto = user.photoURL ;
              setUserPhoto(userPhoto)
@@ -33,6 +33,7 @@ export const Header = ()=>{
         await signOut(auth)
        navigate("/a/signup")
      }
+   
     return(
         <div className="header">
             <img src={userPhoto} alt="" /> Welcome, <span className="userName">{username} </span> <div onClick={logOut}>LogOut</div>

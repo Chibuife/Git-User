@@ -3,6 +3,7 @@ import { Link, Navigate, Outlet, useOutletContext } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile, sendSignInLinkToEmail,isSignInWithEmailLink, signInWithEmailLink, signInWithPopup, GoogleAuthProvider, sendEmailVerification } from "firebase/auth";
 import { auth } from "../auth";
 import passwordicon from "./password.svg"
+import PasswordChecklist from "react-password-checklist"
 import {
     useLocation,
     useNavigate,
@@ -15,19 +16,11 @@ const Signup = ({ history })=>{
     const navgateLink = ()=>{
         setActiveLogin(current=> !current)
     }
-    const[name, setname] = useState("")
     const [input] = useOutletContext();
-    const email = input.props.value;
+    // console.log(input)
+    const email = input.props.children[2].props.value;
     const[password, setPassword] = useState("")
     let navigate = useNavigate();
-    const inputname = (e)=>{
-        setname(e.target.value)    
-       }
-
-//    const inputemail = (e)=>{
-//     setEmail(e.target.value)    
-//    }
-
 
    const inputpassword= (e=>{
     setPassword( e.target.value)
@@ -45,12 +38,10 @@ console.log(loginPassword)
        
     
         const userCredential = await createUserWithEmailAndPassword (auth, loginEmail, loginPassword, );
-        // const username = await  updateProfile(auth.currentUser,  {displayName: loginName});
         console.log(userCredential.user.emailVerified)
         if(userCredential.user.emailVerified === true){
             navigate("/home")
         }else{
-            // navigate("/verification")
             sendEmailVerification(auth.currentUser)
             .then(() => {
             alert('verification sent')
@@ -69,14 +60,6 @@ console.log(loginPassword)
         console.log(error)
         alert(error)
         const showLoginError = (error)=>{
-            // using use state hook to arrange it 
-            // if (error.code === AuthErrorCodes.INVALID_PASSWORD){
-            //     return(
-            //         <>
-            //         <h4>wrong password try again</h4>
-            //         </>
-            //     )
-            // }
         }
     }
    }
@@ -102,10 +85,21 @@ const handleGoogleSignIn = async () =>{
         <GoogleButton   className="googleButton"  onClick={handleGoogleSignIn}/>
         <div className="or">or</div>
         <div>{input}</div>
+        {
+            password ?
+                <div className="p">
+                <PasswordChecklist 
+				rules={["minLength","specialChar","number","capital"]}
+				minLength={5}
+				value={password}
+				// valueAgain={passwordAgain}
+				onChange={(isValid) => {}}
+			/>
+                </div>
+            :
+            null
+        }
         <div className="inputbox"><div className="gray input-icon"><img src={passwordicon} alt="" /></div><input type="password"  value={password || ""}  onChange={inputpassword}/><br /></div><br />
-
-        
-       
         <div className="small">
             <small>
              By signing up, you agree to our terms of service and privacy policy.

@@ -68,14 +68,12 @@ let myTest = removeDuplicates(test);
       height: "400", // Height of the chart
       dataFormat: "json", // Data type
       dataSource: {
-        // Chart Configuration
         chart: {
           caption: "Stars Per Language",    //Set the chart caption
           theme: "fusion",                 //Set the theme for your chart
           paletteColors:
           "#2caeba, #5D62B5, #FFC533, #F2726F, #8d6e63, #1de9b6, #6E80CA",
         },
-        // Chart Data - from step 2
         data: data
       }
     };

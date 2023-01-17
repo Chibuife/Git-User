@@ -18,9 +18,10 @@ const Login = ()=>{
     }
     const navigate = useNavigate()
     const [input] = useOutletContext();
-    const email = input.props.value;
+    const email = input.props.children[2].props.value;
     const[password, setPassword] = useState("")
     const[user, setUser] = useState();
+ 
     
     const [active, setActive] = useState(false)
     const navgating= ()=>{
@@ -31,7 +32,6 @@ const Login = ()=>{
    const inputpassword= (e=>{
     setPassword( e.target.value)
    })
-
 
    //login auth function
     const loginEmailPassword = async (e)=> {

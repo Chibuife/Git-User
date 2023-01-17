@@ -281,7 +281,7 @@ border-radius: 5px;
 overflow: hidden;
 margin-left: auto;
 margin-right: auto;
-margin-top: 100px;
+margin-top: 3rem;
 text-align: center;
 position: relative;
 }
@@ -427,6 +427,55 @@ button img{
 .forgottenPasswordBox{
    transition: all 0.5s;
    transform: translateX(100%);
+}
+
+.firstPage{
+    background-color: var(--bodyBackGroundColor);
+    height: 100vh;
+}
+.firstPageContainer{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70vw;
+    text-align: center;
+}
+.firstPageContainer img{
+    width: 60%;
+    margin-top: 5rem;
+}
+.firstPageContainer h1{
+    font-size: clamp(3rem, 5vw, 4rem);
+    font-family:  sans-serif;
+    margin: 30px;
+    color: #102a42;
+}
+.firstPageContainer .linktologin{
+    color: var(--white);
+    background-color: var(--clr-primary-5);
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 5px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 1s;
+}
+.firstPageContainer .linktologin:hover{
+    background-color: #e0fcff;
+    color: var(--clr-grey-5);
+}
+.p{
+    background-color: black;
+    color: white;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 31% 75%, 25% 86%, 19% 75%, 0% 75%);
+    position: absolute;
+    margin-top: -170px;
+    z-index: 10;
+    overflow: hidden;
+    height: 200px;
+    transition: all 2s;
 }
 
 

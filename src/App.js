@@ -17,9 +17,9 @@ import Signup from './Compoenets/Signup';
 import Login from './Compoenets/Login';
 import { Authentication } from './Compoenets/Athentication';
 import { PasswordReset } from './Compoenets/PasswordReset';
-import { Verification } from './Compoenets/Verfication';
 import { auth } from './auth';
 import { Octokit } from "@octokit/rest" 
+import { FirstPage } from './Compoenets/FirstPage';
 
 // let token = "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";
 let number= 60;
@@ -84,8 +84,8 @@ const fetchData =  useCallback( async (userName)=> {
 
  const router = createBrowserRouter([
   {
-    // path: "/",
-    // element: <Login/>,
+    path: "/",
+    element: <FirstPage/>,
   },
   {
     path: "/a",
@@ -97,18 +97,12 @@ const fetchData =  useCallback( async (userName)=> {
       },
       {
         path: "/a/signup",
-        element:    <Signup/>,
-        // errorElement:<ErrorPage/>,
-      },
+        element:    <Signup/>,      },
       {
         path: "/a/passwordreset",
         element: <PasswordReset/>,
       },
     ],
-  },
-  {
-    path: "/verification",
-    element: <Verification/>,
   },
   {
     path: "/home",
