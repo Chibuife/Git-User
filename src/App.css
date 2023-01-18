@@ -13,18 +13,19 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+body{
+    background-color: var(--bodyBackGroundColor);
+}
 .body{
     font-family: var(--font-family);
     background-color: var(--bodyBackGroundColor);
     max-width: 1500px; 
+    position: absolute;
 }
 .bodyContent{
     margin-left: auto;
     margin-right: auto;
-    /* background-color: red; */
     width: calc(100% - var(--bodyContentMargin));
-    /* height: 50px; */
 }
 .header{
     background-color: var(--white);
@@ -32,9 +33,10 @@
      grid-template-columns: 70px 80px 200px 50px;
     align-items: center;
     justify-content: center;
-    margin-top: 2rem;
+    padding-top: 2rem;
     padding-bottom: 2rem;
     font-family: var(--ff-primary);
+    width: 100vw;
 }
 
 .header img{
@@ -61,7 +63,7 @@
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    width: 90%;
+    width: 80%;
     height: 50px;
     margin-right: 50px;
 }
@@ -185,7 +187,7 @@ h3{
 }
 .userDetail{
     background-color: white;
-    width: 650px;
+    width: 600px;
     height: 300px;
     border-radius: 0px 5px 5px 5px 5pxx;
     margin-bottom: 50px;
@@ -477,7 +479,65 @@ button img{
     height: 200px;
     transition: all 2s;
 }
-
+.myLoader{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+.loader {
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    border: 3px solid;
+    border-color: #f4885e #f66a6a transparent transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader::after,
+  .loader::before {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid;
+    border-color: transparent transparent #2caeba #2caeba;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: rotationBack 0.5s linear infinite;
+    transform-origin: center center;
+  }
+  .loader::before {
+    width: 32px;
+    height: 32px;
+    border-color: #617d98 #617d98 transparent transparent;
+    animation: rotation 1.5s linear infinite;
+  }
+      
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+  @keyframes rotationBack {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+      
 
 @media (max-width: 578px) {
     .body{

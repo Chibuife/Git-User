@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { GitHub } from './Compoenets/GitHub';
 import { Languages } from './Compoenets/Languges';
@@ -6,31 +5,28 @@ import { MostPopular } from './Compoenets/MostPopular';
 import { Stars } from './Compoenets/Stars';
 import { Fork } from './Compoenets/Fork';
 import { Search } from './Compoenets/Search';
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import { useCallback, useEffect,useRef, useState } from 'react';
 import { Header } from './Compoenets/Header';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom";
 import Signup from './Compoenets/Signup';
 import Login from './Compoenets/Login';
 import { Authentication } from './Compoenets/Athentication';
 import { PasswordReset } from './Compoenets/PasswordReset';
-import { auth } from './auth';
 import { Octokit } from "@octokit/rest" 
 import { FirstPage } from './Compoenets/FirstPage';
 
-// let token = "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";
 let number= 60;
 function App() {
-  let [usersName, setUserName] = useState();
   const [userObj, setUserObj] = useState();
   const octokit = new Octokit({     
   });
-
- console.log(auth)
-
+  const inputRef = useRef();
+  const [userNameRef , setUserNameRef] = useState();
+console.log(userNameRef)
+  const [usersName, setUserName] = useState()
 const fetchData =  useCallback( async (userName)=> {   
   try {
    const { data } =  await octokit.request(`GET /users/{userName}`, {userName})
@@ -51,32 +47,25 @@ const fetchData =  useCallback( async (userName)=> {
 
 },[])  
 
- const intFetch =  useEffect  ( ()=> {
-  if (usersName === undefined){
+ useEffect  ( ()=> {
+  if (userNameRef === undefined){
       fetchData("chibuife")
     }
   else{
-      if(usersName){
-        fetchData(usersName) 
+      if(userNameRef){
+        fetchData(userNameRef) 
       }else{
         fetchData("chibuife")
       }
   }
 
-  },[usersName])
+  },[userNameRef])
 
 
 
  if(userObj){
   const name = userObj.name
  }
-//  else{
-//   return null
-//  }
- const input = (e)=>{
-  e.preventDefault()
-  console.log(e.target.value)
-} 
 
 
 
@@ -108,12 +97,16 @@ const fetchData =  useCallback( async (userName)=> {
     path: "/home",
     element:
      <div className='body'>
+     
     <Header/>
     <div className='bodyContent'>
     <div className='search-count'>
-    <Search usersName={usersName} setUserName={setUserName} intFetch={intFetch} />
+    <Search inputRef={inputRef} setUserName={setUserName} usersName={usersName} setUserNameRef={setUserNameRef}/>
     <div className='count'>{number}/60</div>
     </div>
+     {
+        userObj ? <div className='display-relative'>
+        
     <GitHub userObj={userObj}/>
     
     <section className='sectionThree'>
@@ -130,6 +123,9 @@ const fetchData =  useCallback( async (userName)=> {
         <Fork userObj={userObj}/>
         </div>
     </section>
+        </div> :<div className='myLoader'><span className="loader"></span></div>
+      }
+
     </div>
     
     </div>,

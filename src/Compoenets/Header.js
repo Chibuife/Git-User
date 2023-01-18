@@ -11,7 +11,7 @@ export const Header = ()=>{
     const monitorAuthState = async ()=>{
         onAuthStateChanged(auth, user=>{
           if (user){
-            console.log(user)
+            // console.log(user)
              const userName = user.displayName;
              const userPhoto = user.photoURL ;
              setUserPhoto(userPhoto)
