@@ -539,7 +539,10 @@ button img{
   }
       
 
-@media (max-width: 578px) {
+@media (max-width: 700px) {
+    .header {
+        grid-template-columns: 70px 80px 100px 10px;
+    }
     .body{
         width: 100vw;
     }

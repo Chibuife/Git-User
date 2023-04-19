@@ -125,8 +125,6 @@ const Login = ()=>{
        
        {/* my button */}
         <button >Log <img src={submit} alt="" /></button><br />
-    
-        
         </div>
     )
 }

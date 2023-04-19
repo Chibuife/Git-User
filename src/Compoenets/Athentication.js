@@ -10,7 +10,9 @@ export const Authentication = ()=>{
           
          }
         
-   const input =  <div className="inputbox"><div className="gray input-icon"><img src={email} alt="" /></div> <input type="email" value={mail || ""} onChange={inputemail}/></div>
+   const input =  <div className="inputbox">
+     <div className="gray input-icon"><img src={email} alt="" /></div> <input type="email" value={mail || ""} onChange={inputemail}/>
+     </div>
 //    console.log(input.props.children[2].props.value)
 return(    
     <div className="authBody">
