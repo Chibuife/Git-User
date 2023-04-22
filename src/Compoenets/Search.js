@@ -2,7 +2,7 @@ import { useState } from "react"
 import App from "../App";
 import search from "./search.svg"
 
-export const Search = ({inputRef, setUserName, usersName, setUserNameRef})=>{
+export const Search = ({ inputRef, fetchData})=>{
     // if (usersName){
     //     console.log(inputRef.current.value)
     // }
@@ -11,14 +11,10 @@ export const Search = ({inputRef, setUserName, usersName, setUserNameRef})=>{
         <div className="search">
             <img src={search} alt="" />
             <input type="text" 
-             onChange={(e)=> { setUserName(e.target.value)}} 
               ref={inputRef}  placeholder="Enter Github User" />
             <div className="searchBtn" 
             onClick={()=>{
-                if (usersName){
-                    console.log(inputRef.current.value)
-                    setUserNameRef(inputRef.current.value)
-                }
+                fetchData(inputRef.current.value)
             }
             }
             >
